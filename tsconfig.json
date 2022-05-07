@@ -1,0 +1,11 @@
+{
+  "files": [
+    "src/**/*.ts"
+  ],
+  "ts-node": { "project": "tsconfig.json" },
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs"
+  }
+}
