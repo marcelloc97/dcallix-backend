@@ -4,19 +4,18 @@ import api from "../api";
 import { IApiQuery } from "../../interfaces";
 
 export default async (reqBody) => {
-  let date = reqBody?.date ?? '2022-12-31T00:00:00.000Z';
+  let date = reqBody?.date ?? '2021-12-31T00:00:00.000Z';
   let limit = reqBody?.limit ?? 10;
 
   const body = {
     query: {
-			upcoming: true,
-			date_utc: {
-				'$gt': DateTime.now().toUTC().toString(),
-				'$lte': date 
-			}
+      date_utc: {
+        '$lte': DateTime.now().toUTC().toString(),
+        '$gte': date
+      }
 		},
     options: {
-      sort: { date_utc: 'asc' },
+			sort: { date_utc: 'desc' },
       limit,
       select: [
         'rocket',

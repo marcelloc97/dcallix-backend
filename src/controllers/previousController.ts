@@ -1,15 +1,14 @@
 import { Request, Response } from 'express';
 
-// import getPreviousLaunch from '../services/previous/getPreviousLaunch';
-// import getPastLaunches from '../services/previous/getPastLaunches';
+import { getPreviousLaunch, getLatestLaunches } from '../services/previous';
 
 /**
  * GET the next launch based on current date
  */
 const index = async (req: Request, res: Response) => {
-  // const response = await getPreviousLaunch();
+  const response = await getPreviousLaunch();
 
-  // return res.json(response);
+  return res.json(response);
 }
 
 /**
@@ -17,9 +16,9 @@ const index = async (req: Request, res: Response) => {
  * @param {String} req.body.date the date for request (must be in utc format)
  */
 const list = async (req: Request, res: Response) => {
-  // const response = await getPastLaunches(req.body);
+  const response = await getLatestLaunches(req.body);
 
-  // return res.json(response);
+  return res.json(response);
 }
 
 export default {

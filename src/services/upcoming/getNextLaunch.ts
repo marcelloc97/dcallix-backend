@@ -8,17 +8,28 @@ export default async () => {
     query: {
 			upcoming: true,
       date_utc: {
-        '$gt': DateTime.now().toUTC().toString()
+        '$gte': DateTime.now().toUTC().toString()
       }
 		},
     options: {
-			sort: 'asc'
+			sort: { date_utc: 'asc' },
+      limit: 1,
+      select: [
+        'rocket',
+        'launchpad',
+        'flight_number',
+        'name',
+        'date_utc',
+        'date_local',
+        'upcoming',
+        'tbd',
+        'id'
+      ]
     }
   };
 
   const response = await api.post('/launches/query', body);
   const data: IApiQuery = response.data;
-  const { name, date_utc, date_local, id, upcoming } = data.docs[0];
 
-  return { name, date_utc, date_local, id, upcoming };
+  return data.docs;
 }

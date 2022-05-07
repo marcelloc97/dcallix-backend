@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
-import getNextLaunch from '../services/upcoming/getNextLaunch';
-import getUpcomingLaunches from '../services/upcoming/getUpcomingLaunches';
+import { getNextLaunch, getUpcomingLaunches } from '../services/upcoming';
 
 /**
  * GET the next launch based on current date
