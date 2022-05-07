@@ -1,6 +1,7 @@
+import IApiResponse from "./IApiResponse";
 
 export default interface IApiQueryStructure {
-  docs: Array<object>,
+  docs: Array<IApiResponse>,
   totalDocs: number,
   offset: number,
   limit: number,
