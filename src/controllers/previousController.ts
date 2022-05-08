@@ -16,7 +16,7 @@ const index = async (req: Request, res: Response) => {
  * @param {String} req.body.date the date for request (must be in utc format)
  */
 const list = async (req: Request, res: Response) => {
-  const response = await getLatestLaunches(req.body);
+  const response = await getLatestLaunches(req.body, req.query);
 
   return res.json(response);
 }

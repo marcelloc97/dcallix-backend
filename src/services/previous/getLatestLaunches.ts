@@ -3,9 +3,9 @@ import { DateTime } from "luxon";
 import api from "../api";
 import { IApiQuery } from "../../interfaces";
 
-export default async (reqBody) => {
+export default async (reqBody, reqQuery) => {
   let date = reqBody?.date ?? '2021-12-31T00:00:00.000Z';
-  let limit = reqBody?.limit ?? 10;
+  let limit = reqQuery?.limit ?? 10;
 
   const body = {
     query: {
