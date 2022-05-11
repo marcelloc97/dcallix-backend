@@ -18,15 +18,15 @@ export default async (reqBody, reqQuery) => {
 			sort: { date_utc: 'desc' },
       limit,
       select: [
-        'rocket',
-        'launchpad',
-        'flight_number',
+        'payloads',
         'name',
+        'flight_number',
         'date_utc',
         'date_local',
-        'upcoming',
-        'tbd',
         'id'
+      ],
+      populate: [
+        'payloads'
       ]
     }
   };

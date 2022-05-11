@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-const spaceXApi = axios.create({
+export default axios.create({
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'access-control-allow-origin': '*'
   },
 
-  baseURL: 'https://api.spacexdata.com/v5'
+  baseURL: 'https://api.spacexdata.com/v4'
 });
-
-export default spaceXApi;

@@ -14,15 +14,15 @@ export default async () => {
 			sort: { date_utc: 'desc' },
       limit: 1,
       select: [
-        'rocket',
-        'launchpad',
-        'flight_number',
+        'payloads',
         'name',
+        'flight_number',
         'date_utc',
         'date_local',
-        'upcoming',
-        'tbd',
         'id'
+      ],
+      populate: [
+        'payloads'
       ]
     }
   };
@@ -30,5 +30,5 @@ export default async () => {
   const response = await api.post('/launches/query', body);
   const data: IApiQuery = response.data;
   
-  return data;
+  return data.docs[0];
 }
