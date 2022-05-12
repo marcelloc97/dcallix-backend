@@ -110,6 +110,61 @@ Dentro desta pasta temos então os arquivos:
 
 Este arquivo apenas exporta todos os que estão dentro da pasta para facilitar a importação em outros arquivos de fora.
 
-##### controllers/previousController.ts
+##### controllers/previousController.ts & nextController.ts
 
-Aqui é onde a mágica acontece! Dentro deste arquivo basicamente fazemos as requisições à API da Space X utilizando dois `services`, sendo eles `getPreviousLaunch` e `getLatestLaunches`, mas falaremos sobre eles depois.
+Aqui é onde a mágica acontece! Dentro deste arquivo basicamente fazemos as requisições à API da Space X utilizando dois `services` para cada controller sendo eles `getPreviousLaunch`, `getLatestLaunches`, `getNextLaunch` e `getUpcomingLaunches`, mas falaremos sobre eles depois.
+Dentro destes arquivos exportamos duas funções sendo elas: `index` e `list`. Cada uma possui sua responsabilidade, `index` para respostas singulares e `list` para múltiplas.
+
+##### controllers/index.ts
+
+O arquivos `index.ts` dentro de controllers é resposável por exportar todos os controllers existentes na pasta para uma importação mais limpa.
+
+#### services
+
+Dentro desta pasta há todos os serviços dos controladores. Esses serviços são responsáveis por adquirir e tratar os dados vindos de um banco ou API terceira.
+Em nosso caso, utilizamos a API da Space X.
+
+Dentro desta pasta temos então os arquivos:
+
+* `index.ts`
+* `api.ts`
+
+***
+
+* `previous/getPreviousLaunch.ts`
+* `previous/getLatestLaunches.ts`
+* `previous/index.ts`
+
+***
+
+* `upcoming/getNextLaunch.ts`
+* `upcoming/getUpcomingLaunches.ts`
+* `upcoming/index.ts`
+
+Dentro de cada arquivo fazemos a seguintes operações:
+
+1. Importamos `DateTime` de um pacote concorrente do `moment`
+2. Importamos a API já configurada
+3. Importamos nossa interface personalizada para termos controle dos campos que vamos usar
+4. Exportamos uma _arrow function_ assíncrona
+
+Dentro da arrow function nós criamos a variável date que vai utilizar o que vier do body ou algum backup, abaixo um limit para poder puxar mais ou menos requisições.
+Após isso criamos uma constante que vai preparar a nossa query para a API, mais detalhes no arquivo.
+Fazermos a requisição, pegamos a resposta, referenciamos aos dados da resposta nossa interface, extraímos o que queremos dela e retornamos para o controller.
+Essa é a base de todos os services, porém cada service muda o tipo da query e como vai ordenar pela data do lançamento.
+
+Já o arquivo `api.ts` utiliza o axios para criar um comunicador dentre nossa API e a API da Space X, passando uma url base e os cabeçalhos das nossas requisições, sem mistérios.
+
+#### interfaces
+
+A pasta interfaces é mais focada para desenvolvimento, pois uma interface é basicamente uma base/estrutura de como os dados devem ser reconhecidos e usados na nossa API. Basicamente serve para identificarmos e padronizarmos as informações que vamos trabalhar de forma prática e intuitiva.
+
+## Considerações
+
+Este README.md foi pensado para um público mais novo em relação a construção de APIs com Node.js e Typescript, pretendo iniciar novos projetos nesse estilo explicando passo a passo como foi desenvolvido.
+
+Esta API está hospedada na plataforma Heroku, pode ser acessada através deste [link](https://dcallix-backend.herokuapp.com/).
+
+## Agradecimentos
+
+Muito obrigado a Callix pela honra de poder desenvolver este desafio e ter a possibilidade de evoluir profissionalmente. Vamos pra cima 🚀
